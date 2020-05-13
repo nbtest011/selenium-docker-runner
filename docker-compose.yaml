@@ -25,7 +25,7 @@ services:
       - HUB_HOST=hub
       - MODULE=testng.xml
     volumes:
-      - .output/search_result_Firefox:/Usersnikunj.bambhroliyaIdeaProjectsseleniumdocker/test-output
+      - .output1/search_result_Firefox:/Usersnikunj.bambhroliyaIdeaProjectsseleniumdocker/test-output
   search-module2:
     image: nbtest011/seleniumdocker
     depends_on:
@@ -36,4 +36,4 @@ services:
       - HUB_HOST=hub
       - MODULE=testng.xml
     volumes:
-      - .output/search_result_Chrome:/Usersnikunj.bambhroliyaIdeaProjectsseleniumdocker/test-output
+      - .output1/search_result_Chrome:/Usersnikunj.bambhroliyaIdeaProjectsseleniumdocker/test-output
