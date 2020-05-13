@@ -3,23 +3,28 @@ pipeline{
 	stages{
 		stage("Pull Latest Image"){
 			steps{
+				echo 'STEP_1 --> PULLING LATES IMAGE FROM DOCKERHUB...'	
 				bat "docker pull nbtest011/seleniumdocker"
 			}
 		}
 		stage("Start Grid"){
 			steps{
+				echo 'STEP_2 --> STARTING HUB TO TRIGGER CHROME AND FIREFOX BROWSERS...'
 				bat "docker-compose up -d hub chrome firefox"
 			}
 		}
 		stage("Run Test"){
 			steps{
+				echo 'STEP_3 --> RUNNING TESTS...'
 				bat "docker-compose up testng.xml"
 			}
 		}
 	}
 	post{
 		always{
+			echo 'STEP_4 --> ARCHIVING TEST RESULTS...'
 			archiveArtifacts artifacts: 'output1/**'
+			echo 'STEP_5 --> KILLIING OFF ALL RUNNING CONTAINERS...'
 			bat "docker-compose down"
 		}
 	}
