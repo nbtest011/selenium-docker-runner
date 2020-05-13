@@ -3,24 +3,24 @@ pipeline{
 	stages{
 		stage("Pull Latest Image"){
 			steps{
-				sh "docker pull nbtest011/seleniumdocker"
+				bat "docker pull nbtest011/seleniumdocker"
 			}
 		}
 		stage("Start Grid"){
 			steps{
-				sh "docker-compose up -d hub chrome firefox"
+				bat "docker-compose up -d hub chrome firefox"
 			}
 		}
 		stage("Run Test"){
 			steps{
-				sh "docker-compose up testng.xml"
+				bat "docker-compose up testng.xml"
 			}
 		}
 	}
 	post{
 		always{
 			archiveArtifacts artifacts: 'output/**'
-			sh "docker-compose down"
+			bat "docker-compose down"
 		}
 	}
 }
