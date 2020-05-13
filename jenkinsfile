@@ -23,7 +23,7 @@ pipeline{
 	post{
 		always{
 			echo 'STEP_4 --> ARCHIVING TEST RESULTS...'
-			archiveArtifacts artifacts: 'output1/**'
+			archiveArtifacts artifacts: 'output/**'
 			echo 'STEP_5 --> KILLIING OFF ALL RUNNING CONTAINERS...'
 			bat "docker-compose down"
 		}
